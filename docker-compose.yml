@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  vue-app:
+    container_name: vue-app
+    image: node:22-alpine
+    working_dir: /vue-app
+    volumes:
+      - ./vue-app:/vue-app
+    ports:
+      - "8080:8080"
+    networks:
+      - app-network
+    command: sh -c "corepack enable && corepack use pnpm && pnpm install && pnpm run dev"
+
+  node-server:
+    container_name: node-server
+    image: node:22-alpine
+    working_dir: /node-server
+    volumes:
+      - ./node-server:/node-server
+    ports:
+      - "3000:3000"
+    networks:
+      - app-network
+    command: sh -c "corepack enable && corepack use pnpm && pnpm install && pnpm run dev"
+
+networks:
+  app-network:
+    driver: bridge

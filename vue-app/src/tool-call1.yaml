@@ -1,0 +1,26 @@
+data: {"type":"start"}
+
+data: {"type":"start-step"}
+
+data: {"type":"tool-input-start","toolCallId":"call_d3fpfnc2c3maci759drg","toolName":"generateOutline"}
+
+data: {"type":"tool-input-delta","toolCallId":"call_d3fpfnc2c3maci759drg","inputTextDelta":"{\"title\":\"AI Agents: Your Smart Digital Helpers\",\"tone\":\"casual\"}"}
+
+data: {"type":"tool-input-available","toolCallId":"call_d3fpfnc2c3maci759drg","toolName":"generateOutline","input":{"title":"AI Agents: Your Smart Digital Helpers","tone":"casual"}}
+
+data: {"type":"tool-output-available","toolCallId":"call_d3fpfnc2c3maci759drg","output":{"outline":"- **Introduction**\n  - Brief overview of AI agents\n  - Importance of using AI agents in daily life\n\n- **How AI Agents Work**\n  - Explanation of machine learning and natural language processing\n  - Examples of AI agents in action (e.g., virtual assistants, chatbots)\n\n- **Benefits of AI Agents**\n  - Time-saving and efficient tasks\n  - Personalized experiences and recommendations\n  - Improved customer service and support","title":"AI Agents: Your Smart Digital Helpers","tone":"casual"}}
+
+data: {"type":"finish-step"}
+
+data: {"type":"start-step"}
+
+data: {"type":"tool-input-start","toolCallId":"call_d3fpfp42c3m8ds8drmtg","toolName":"askForConfirmation"}
+
+data: {"type":"tool-input-delta","toolCallId":"call_d3fpfp42c3m8ds8drmtg","inputTextDelta":"{\"message\":\"Here's a casual-toned article outline on AI agents:\\n\\n**Title: AI Agents: Your Smart Digital Helpers**\\n\\n- **Introduction**\\n  - Brief overview of AI agents\\n  - Importance of using AI agents in daily life\\n\\n- **How AI Agents Work**\\n  - Explanation of machine learning and natural language processing\\n  - Examples of AI agents in action (e.g., virtual assistants, chatbots)\\n\\n- **Benefits of AI Agents**\\n  - Time-saving and efficient tasks\\n  - Personalized experiences and recommendations\\n  - Improved customer service and support\\n\\nWould you like me to generate the full article based on this outline?\"}"}
+
+data: {"type":"tool-input-available","toolCallId":"call_d3fpfp42c3m8ds8drmtg","toolName":"askForConfirmation","input":{"message":"Here's a casual-toned article outline on AI agents:\n\n**Title: AI Agents: Your Smart Digital Helpers**\n\n- **Introduction**\n  - Brief overview of AI agents\n  - Importance of using AI agents in daily life\n\n- **How AI Agents Work**\n  - Explanation of machine learning and natural language processing\n  - Examples of AI agents in action (e.g., virtual assistants, chatbots)\n\n- **Benefits of AI Agents**\n  - Time-saving and efficient tasks\n  - Personalized experiences and recommendations\n  - Improved customer service and support\n\nWould you like me to generate the full article based on this outline?"}}
+
+data: {"type":"finish-step"}
+
+data: {"type":"finish"}
+
