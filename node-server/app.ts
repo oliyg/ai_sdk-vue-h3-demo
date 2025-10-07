@@ -17,14 +17,26 @@ import {
   defineMiddleware,
   H3,
   handleCors,
+  onResponse,
   readBody,
   readValidatedBody,
   serve,
 } from "h3";
 import { z } from "zod";
 
+// telemetry
+import { NodeSDK } from "@opentelemetry/sdk-node";
+import { getNodeAutoInstrumentations } from "@opentelemetry/auto-instrumentations-node";
+import { LangfuseExporter } from "langfuse-vercel";
+
 // env
 dotenv.config();
+
+const sdk = new NodeSDK({
+  traceExporter: new LangfuseExporter({ debug: true }),
+  instrumentations: [getNodeAutoInstrumentations()],
+});
+sdk.start();
 
 // bigModel model
 const bigModel = createOpenAICompatible({
@@ -72,6 +84,13 @@ app.post(
       // model: hunyuan("hunyuan-turbos-latest"),
       model: bigModel("glm-4.5-flash"),
       // providerOptions: { hunyuan: { stream: true } },
+      experimental_telemetry: {
+        isEnabled: true,
+        functionId: "helpful-writer",
+        metadata: {
+          name: "writer-agent",
+        },
+      },
       system: `
 You are a helpful writer. You should generate an article according to user's need.
 Important:
@@ -106,6 +125,13 @@ Important:
           async *execute({ title, tone }) {
             const res = streamText({
               model: hunyuan("hunyuan-lite"),
+              experimental_telemetry: {
+                isEnabled: true,
+                functionId: "outline-generator",
+                metadata: {
+                  name: "writer-agent-outline",
+                },
+              },
               prompt: `
 Generate an outline for a blog with the title "${title}" and the tone "${tone}".
 Important:
@@ -150,6 +176,13 @@ Important:
           async *execute({ outline, title, tone }) {
             const res = streamText({
               model: hunyuan("hunyuan-lite"),
+              experimental_telemetry: {
+                isEnabled: true,
+                functionId: "draft-generator",
+                metadata: {
+                  name: "writer-agent-draft",
+                },
+              },
               prompt: `
 Generate an article draft about ${title} in ${tone} tone with the following outline.
 Important:
@@ -183,6 +216,9 @@ Show final answer to user.
           }),
         }),
       },
+    });
+    onResponse(async () => {
+      await sdk.shutdown(); // Flushes the trace to Langfuse
     });
     return result.toUIMessageStreamResponse();
   })

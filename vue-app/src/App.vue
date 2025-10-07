@@ -6,7 +6,7 @@ import { ref, onMounted, watch } from 'vue';
 
 const input = ref('Generate an article about ai agent in casual tone.');
 const chat = new Chat({
-  transport: new DefaultChatTransport({ api: 'http://localhost:3000/chat' }),
+  transport: new DefaultChatTransport({ api: 'http://localhost:3001/chat' }),
   // sendAutomaticallyWhen: lastAssistantMessageIsCompleteWithToolCalls,
   async onToolCall({ toolCall }) {
     if (toolCall.dynamic) {

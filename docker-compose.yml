@@ -20,7 +20,7 @@ services:
     volumes:
       - ./node-server:/node-server
     ports:
-      - "3000:3000"
+      - "3001:3000"
     networks:
       - app-network
     command: sh -c "corepack enable && corepack use pnpm && pnpm install && pnpm run dev"
@@ -28,3 +28,4 @@ services:
 networks:
   app-network:
     driver: bridge
+    external: true
